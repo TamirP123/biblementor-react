@@ -1,0 +1,86 @@
+/* Ensure the root takes up full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flexbox layout to push footer down */
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content will fill the available space */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Ensures content stretches to fill available space */
+}
+
+/* Flex-grow: the content expands to fill the remaining space */
+.content {
+  flex: 1; /* Grow to fill available space */
+}
+
+/* Ensure footer is pinned to the bottom */
+footer {
+  background-color: #f2f2f2;
+  color: #DAA520;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Optional body styling to prevent excess padding at bottom */
+body {
+  background-color: #f3f1ed;
+}
+/* Mobile-specific styles */
+@media screen and (max-width: 768) {
+  /* Ensure full width and prevent horizontal scrolling */
+  body, #root, .app-container, .content {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Adjust padding and margins for mobile */
+  .content {
+    padding-top: 100px; /* Increase the padding for mobile view */
+  }
+
+  /* Make images responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Adjust typography for better readability on small screens */
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  /* Ensure buttons and form elements are easily tappable */
+  button, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Stack elements vertically on mobile */
+  .flex-container {
+    flex-direction: column;
+  }
+
+  /* Adjust grid layouts for mobile */
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}

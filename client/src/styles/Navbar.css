@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.navbar {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9)) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 1300; /* Lower than the drawer, but still high */
+  padding: 10px 20px; /* Increased padding for a more spacious look */
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row; /* Change to row for horizontal layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between title and links */
+  padding: 0; /* Remove padding */
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.navbar-title {
+  font-family: 'Orbitron', sans-serif !important;
+  text-align: center;
+  font-weight: 700 !important;
+  font-size: 2.5rem !important; /* Increased font size for prominence */
+  color: #ff4d4d !important; /* Red color for title */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0; /* Remove bottom margin */
+  padding: 0 20px; /* Add horizontal padding */
+}
+
+.navbar-links {
+  display: flex; /* Use flexbox for links */
+  justify-content: flex-end; /* Align links to the right */
+  width: 100%; /* Full width to allow spacing */
+  max-width: 800px; /* Optional: limit max width for better alignment */
+}
+
+.nav-link {
+  color: #ffffff; /* White color for links */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem; /* Increased font size for better readability */
+  transition: color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+  padding: 10px 15px; /* Add padding for better click area */
+  border-radius: 5px; /* Rounded corners for links */
+  margin-left: 15px; /* Space between links */
+}
+
+.nav-link:hover {
+  color: #ff4d4d; /* Red hover color */
+  background-color: rgba(255, 77, 77, 0.1); /* Subtle background on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* New styles for search button */
+.search-button {
+  color: #ff4d4d !important; /* Red color for search button */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem; /* Larger icon for visibility */
+  margin-left: 20px; /* Space between search button and links */
+}
+
+/* Adjust search bar styles */
+.MuiInputBase-root {
+  color: #ffffff !important;
+}
+
+.MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Add a subtle shadow on scroll */
+.navbar.scrolled {
+  background-color: rgba(20, 20, 20, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* New styles for Account dropdown */
+.account-button {
+  color: #ffffff !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important; /* Adjusted font size */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+  margin-left: 15px; /* Space between account button and links */
+}
+
+.account-button:hover {
+  background-color: rgba(255, 77, 77, 0.2) !important; /* Subtle red background on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.account-menu .MuiPaper-root {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.account-menu .MuiMenuItem-root {
+  font-size: 1rem;
+  padding: 12px 24px;
+}
+
+.account-menu .MuiMenuItem-root:hover {
+  background-color: rgba(255, 77, 77, 0.1); /* Subtle red background on hover */
+}

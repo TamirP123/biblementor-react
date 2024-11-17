@@ -1,0 +1,21 @@
+.live-games {
+  background-color: rgba(20, 20, 20, 0.9);
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+}
+
+.live-games h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.live-games ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.live-games li {
+  margin: 5px 0;
+  font-size: 1.2rem;
+} 
