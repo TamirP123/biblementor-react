@@ -88,7 +88,7 @@ const NavbarComponent = () => {
                 <a href="#" className="nav-link">Topics</a>
               </Link>
               <Link to="/" style={{ textDecoration: "none" }}>
-                <a href="#" className="nav-link">AI Insights</a>
+                <a href="#" className="nav-link">Ask AI</a>
               </Link>
             </Box>
           )}

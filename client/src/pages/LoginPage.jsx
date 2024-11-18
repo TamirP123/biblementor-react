@@ -62,40 +62,52 @@ function LoginPage() {
 
   return (
     <div className="auth-page">
+      <div className="animated-background">
+        <div className="circle circle-1"></div>
+        <div className="circle circle-2"></div>
+        <div className="circle circle-3"></div>
+        <div className="circle circle-4"></div>
+        <div className="circle circle-5"></div>
+      </div>
       <div className="auth-container">
         <div className="auth-image">
-          <img
-            src="/assets/loginCutout.png"
-            alt="Sneaker"
-            className="logsneaker-image"
-          />
+          <div className="auth-image-overlay">
+            <h1 className="image-title">AI-Powered Bible Study</h1>
+            <p className="image-subtitle">"Your word is a lamp to my feet and a light to my path" - Psalm 119:105</p>
+          </div>
         </div>
         <div className="auth-form-container">
-          <h2>Welcome Back</h2>
-          <p className="auth-subtitle">
-            Please enter your credentials to log in.
-          </p>
+          <div className="form-header">
+            <h2>Welcome Back</h2>
+            <p className="auth-subtitle">
+              Continue your spiritual journey with AI-assisted Bible study
+            </p>
+          </div>
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
+              <label htmlFor="email">Email</label>
               <input
+                id="email"
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Enter your email"
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="form-group">
+              <label htmlFor="password">Password</label>
               <input
+                id="password"
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Enter your password"
                 onChange={handleChange}
                 required
               />
             </div>
             <button type="submit" className="auth-button">
-              Log In
+              Sign In
             </button>
           </form>
           {error && (
@@ -104,17 +116,14 @@ function LoginPage() {
             </div>
           )}
           <div className="auth-footer">
-            Don't have an account?{" "}
-            <Link to="/signup" className="auth-link">
-              Sign up
-            </Link>
+            <p>Don't have an account? <Link to="/signup" className="auth-link">Sign up</Link></p>
           </div>
           <div className="demo-login">
             <button onClick={handleDemoLogin} className="demo-button user-demo">
-              Demo User Login
+              Try Demo Account
             </button>
             <button onClick={handleDemoAdminLogin} className="demo-button admin-demo">
-              Demo Admin Login
+              Admin Demo
             </button>
           </div>
         </div>

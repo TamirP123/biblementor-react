@@ -41,8 +41,11 @@ function SignupPage() {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <div className="auth-image">
-          <img src="/assets/loginCutout.png" alt="Sneaker" className="logsneaker-image" />
+      <div className="auth-image">
+          <div className="auth-image-overlay">
+            <h1 className="image-title">AI-Powered Bible Study</h1>
+            <p className="image-subtitle">"Your word is a lamp to my feet and a light to my path" - Psalm 119:105</p>
+          </div>
         </div>
         <div className="auth-form-container">
           <h2>Create an Account</h2>
