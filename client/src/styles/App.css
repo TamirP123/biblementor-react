@@ -1,1 +1,17 @@
- 
+.main-content {
+  padding-top: 64px; /* Height of navbar */
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    padding-top: 120px; /* Increased for mobile navbar + search */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-top: 140px; /* Further increased for smaller screens */
+  }
+} 

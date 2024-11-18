@@ -1,13 +1,9 @@
-/* or App.css */
 body {
-  padding-top: 64px; /* Adjust this value based on your navbar height */
-}
-
-main {
-  min-height: calc(100vh - 64px); /* Ensures the main content area takes up at least the full viewport height minus the navbar */
+  margin: 0;
+  padding: 0;
 }
 
 svg {
-  width: 2050px; /* Change this value to your desired size */
-  height: 2050px; /* Change this value to your desired size */
+  width: 2050px;
+  height: 2050px;
 }

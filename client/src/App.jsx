@@ -44,7 +44,9 @@ function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         {!isAdmin && <NavbarComponent />}
-        <Outlet />
+        <main className="main-content">
+          <Outlet />
+        </main>
       </ThemeProvider>
     </ApolloProvider>
   );

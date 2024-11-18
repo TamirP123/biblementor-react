@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import BiblePage from "./pages/BiblePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupPage />,
+      },
+      {
+        path: "bible",
+        element: <BiblePage/>,
       },
     ],
   },

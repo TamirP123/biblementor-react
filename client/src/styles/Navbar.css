@@ -91,3 +91,144 @@
   background-color: rgba(20, 20, 20, 1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* Mobile Styles */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 5px;
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+  }
+
+  .left-section {
+    flex: 0 1 auto;
+  }
+
+  .right-section {
+    flex: 0 1 auto;
+  }
+
+  /* Style for mobile top search bar */
+  .mobile-search-top {
+    order: 3;
+    width: 100%;
+    margin: 8px 0;
+    padding: 0 10px;
+    flex: 0 0 100%;
+  }
+
+  /* Adjust the search container for mobile */
+  .search-dropdown-container.mobile-search-top {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+  }
+
+  /* Remove the search bar from the mobile drawer */
+  .mobile-search {
+    display: none;
+  }
+
+  /* Ensure proper spacing for the title and menu icon */
+  .navbar-title {
+    font-size: 1rem !important;
+    margin-right: 5px;
+  }
+
+  .mobile-menu-button {
+    margin-left: 5px;
+  }
+
+  .mobile-menu {
+    width: 280px;
+    padding-top: 20px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mobile-search {
+    padding: 10px;
+    width: calc(100% - 16px);
+    margin: 8px;
+  }
+
+  /* Style the drawer content */
+  .MuiDrawer-paper {
+    width: 280px;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+    padding-top: 20px;
+  }
+
+  .MuiListItem-root {
+    padding: 12px 16px;
+    margin: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .MuiListItem-root:hover {
+    background-color: rgba(0, 198, 255, 0.1);
+  }
+
+  .MuiListItemText-primary {
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  /* Ensure list takes full height */
+  .MuiList-root {
+    padding: 8px 0;
+    height: 100%;
+  }
+
+  /* Add some spacing between menu items */
+  .MuiListItem-root + .MuiListItem-root {
+    margin-top: 4px;
+  }
+
+  /* Style the mobile search container */
+  .mobile-search {
+    padding: 10px;
+    width: calc(100% - 16px);
+    margin: 8px;
+  }
+
+  /* Ensure list takes full height */
+  .MuiList-root {
+    padding: 8px 0;
+    height: 100%;
+  }
+
+  /* Add some spacing between menu items */
+  .MuiListItem-root + .MuiListItem-root {
+    margin-top: 4px;
+  }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 360px) {
+  .navbar-title {
+    font-size: 0.9rem !important;
+  }
+
+  .mobile-menu {
+    width: 100%;
+  }
+
+  .MuiDrawer-paper {
+    width: 100%;
+  }
+
+  .toolbar {
+    padding: 5px;
+  }
+
+  .mobile-search-top {
+    padding: 0 5px;
+  }
+}

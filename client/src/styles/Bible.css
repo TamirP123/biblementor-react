@@ -1,0 +1,203 @@
+.bible-container {
+  min-height: calc(100vh - 64px);
+  background: #ffffff;
+  padding: 40px 20px;
+  margin-top: 64px;
+}
+
+.bible-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bible-title {
+  text-align: center;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #333333;
+  margin-bottom: 40px !important;
+  padding-top: 20px;
+}
+
+.highlight {
+  color: #00c6ff;
+}
+
+.bible-header {
+  position: sticky;
+  top: 64px;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.bible-controls {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.bible-select {
+  min-width: 160px !important;
+  height: 40px;
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+}
+
+.bible-select .MuiSelect-select {
+  padding: 8px 16px !important;
+  font-size: 15px !important;
+  color: #333333 !important;
+}
+
+.version-select {
+  min-width: 80px !important;
+  background: #f8f9fa !important;
+}
+
+.version-select .MuiSelect-select {
+  font-weight: 500 !important;
+}
+
+.verses-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 40px auto 0;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Default content styles */
+.default-content {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666666;
+}
+
+.welcome-title {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #333333;
+  margin-bottom: 16px !important;
+}
+
+.welcome-subtitle {
+  font-size: 1.1rem !important;
+  color: #666666;
+  margin-bottom: 32px !important;
+}
+
+.welcome-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.chapter-title {
+  text-align: center;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #333333;
+  margin-bottom: 32px !important;
+}
+
+.verses-content {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333333;
+  text-align: justify;
+}
+
+.verse-item {
+  display: inline;
+  margin-bottom: 20px;
+  padding: 8px 0;
+}
+
+.verse-number {
+  color: #666666;
+  font-size: 0.7em;
+  font-weight: 500;
+  margin-right: 1px;
+  position: relative;
+  top: -5px;
+}
+
+.verse-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bible-container {
+    padding: 20px 10px;
+    margin-top: 56px;
+  }
+
+  .bible-title {
+    font-size: 2rem !important;
+    margin-bottom: 30px !important;
+  }
+
+  .bible-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bible-select {
+    width: 100% !important;
+  }
+
+  .verses-container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem !important;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .chapter-title {
+    font-size: 1.5rem !important;
+  }
+
+  .verses-content {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .verse-number {
+    font-size: 0.65em;
+    top: -4px;
+  }
+}
+
+/* Add hover effect for better interactivity */
+.verse-item:hover .verse-number {
+  color: #00c6ff;
+}
+
+/* Add loading state for version changes */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+} 
