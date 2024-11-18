@@ -8,6 +8,7 @@
   overflow: hidden;
   margin-top: 70px;
   padding: 40px 20px;
+  width: 100%;
 }
 
 .hero-background {
@@ -16,6 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -78,6 +80,8 @@
   gap: 60px;
   max-width: 1400px;
   width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
   z-index: 1;
 }
 
