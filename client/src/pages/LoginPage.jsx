@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import { LOGIN, LOGIN_WITH_GOOGLE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import "../styles/LoginPage.css";
 
@@ -12,6 +14,7 @@ function LoginPage() {
 
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
+  const [loginWithGoogle] = useMutation(LOGIN_WITH_GOOGLE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -26,38 +29,36 @@ function LoginPage() {
     }
   };
 
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      const { email, name, sub: googleId } = decoded;
+      
+      const mutationResponse = await loginWithGoogle({
+        variables: { 
+          email,
+          name,
+          googleId
+        },
+      });
+      
+      const token = mutationResponse.data.loginWithGoogle.token;
+      Auth.login(token);
+    } catch (error) {
+      console.error('Google sign in error:', error);
+    }
+  };
+
+  const handleGoogleError = () => {
+    console.error('Google login failed');
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-  };
-
-  const handleDemoLogin = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: "user@gmail.com", password: "password" },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleDemoAdminLogin = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: "admin@example.com", password: "adminpassword123" },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
@@ -83,6 +84,23 @@ function LoginPage() {
               Continue your spiritual journey with AI-assisted Bible study
             </p>
           </div>
+
+          <div className="social-auth-buttons">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="outline"
+              size="large"
+              text="signin_with"
+              shape="rectangular"
+              width="100%"
+            />
+          </div>
+
+          <div className="auth-divider">
+            <span>or</span>
+          </div>
+
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -110,21 +128,15 @@ function LoginPage() {
               Sign In
             </button>
           </form>
+          
           {error && (
             <div className="error-message">
               The provided credentials are incorrect
             </div>
           )}
+          
           <div className="auth-footer">
             <p>Don't have an account? <Link to="/signup" className="auth-link">Sign up</Link></p>
-          </div>
-          <div className="demo-login">
-            <button onClick={handleDemoLogin} className="demo-button user-demo">
-              Try Demo Account
-            </button>
-            <button onClick={handleDemoAdminLogin} className="demo-button admin-demo">
-              Admin Demo
-            </button>
           </div>
         </div>
       </div>

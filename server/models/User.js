@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const { Schema } = mongoose;
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
     trim: true,
-    unique: true,
   },
   email: {
     type: String,
@@ -21,6 +18,16 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  googleId: {
+    type: String,
+    sparse: true,
+    unique: true,
+  },
+  appleId: {
+    type: String,
+    sparse: true,
+    unique: true,
+  },
   isAdmin: {
     type: Boolean,
     default: false,
@@ -29,6 +36,9 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
+    if (this.password === "GOOGLE-AUTH-USER" || this.password === "APPLE-AUTH-USER") {
+      return next();
+    }
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -37,6 +47,9 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.isCorrectPassword = async function (password) {
+  if (this.password === "GOOGLE-AUTH-USER" || this.password === "APPLE-AUTH-USER") {
+    return false;
+  }
   return bcrypt.compare(password, this.password);
 };
 

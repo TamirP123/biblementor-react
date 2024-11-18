@@ -11,6 +11,7 @@ import Auth from "./utils/auth";
 import NavbarComponent from "./components/NavbarComponent";
 import Footer from "./components/Footer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -42,15 +43,17 @@ function App() {
     Auth.loggedIn() && Auth.getProfile().authenticatedPerson.isAdmin;
 
   return (
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        {!isAdmin && <NavbarComponent />}
-        <main className="main-content">
-          <Outlet />
-        </main>
-        <Footer/>
-      </ThemeProvider>
-    </ApolloProvider>
+    <GoogleOAuthProvider clientId="990799208592-a7a76168ber6ppa1ce8nbkdbcs9id61t.apps.googleusercontent.com">
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          {!isAdmin && <NavbarComponent />}
+          <main className="main-content">
+            <Outlet />
+          </main>
+          <Footer/>
+        </ThemeProvider>
+      </ApolloProvider>
+    </GoogleOAuthProvider>
   );
 }
 

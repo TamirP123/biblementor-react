@@ -4,6 +4,9 @@ type User {
   _id: ID!
   username: String!
   email: String!
+  googleId: String
+  appleId: String
+  isAdmin: Boolean
 }
 
 type Query {
@@ -20,6 +23,8 @@ type Auth {
 type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
+  loginWithGoogle(email: String!, name: String!, googleId: String!): Auth
+  loginWithApple(email: String!, name: String!, appleId: String!): Auth
 }
 
 `;

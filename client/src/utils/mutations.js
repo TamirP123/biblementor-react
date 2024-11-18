@@ -24,3 +24,29 @@ export const ADD_USER = gql`
   }
 `;
 
+export const LOGIN_WITH_GOOGLE = gql`
+  mutation loginWithGoogle($email: String!, $name: String!, $googleId: String!) {
+    loginWithGoogle(email: $email, name: $name, googleId: $googleId) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
+
+export const LOGIN_WITH_APPLE = gql`
+  mutation loginWithApple($email: String!, $name: String!, $appleId: String!) {
+    loginWithApple(email: $email, name: $name, appleId: $appleId) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
+
