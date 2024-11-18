@@ -9,6 +9,7 @@ import "./App.css";
 import { setContext } from "@apollo/client/link/context";
 import Auth from "./utils/auth";
 import NavbarComponent from "./components/NavbarComponent";
+import Footer from "./components/Footer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const httpLink = createHttpLink({
@@ -47,6 +48,7 @@ function App() {
         <main className="main-content">
           <Outlet />
         </main>
+        <Footer/>
       </ThemeProvider>
     </ApolloProvider>
   );
