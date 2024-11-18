@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  InputBase,
-  IconButton,
-} from '@mui/material';
+import React, { useEffect } from 'react';
+import { Box, InputBase, IconButton } from '@mui/material';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import '../styles/SearchDropdown.css';
 
 const SearchDropdown = ({ onClose, onSubmit, searchQuery, setSearchQuery }) => {
-  useEffect(() => {
-  }, [searchQuery]);
+  useEffect(() => {}, [searchQuery]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -25,37 +18,21 @@ const SearchDropdown = ({ onClose, onSubmit, searchQuery, setSearchQuery }) => {
     }
   };
 
-  const handleSneakerClick = () => {
-    onClose();
-  };
-
   return (
     <Box className="search-dropdown">
-      <Box className="search-header">
-        <form onSubmit={handleSearchSubmit} className="search-form">
-          <FaSearch className="search-icon" />
-          <InputBase
-            placeholder="Search…"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="search-input"
-            autoFocus
-          />
-        </form>
+      <form onSubmit={handleSearchSubmit} className="search-form">
+        <InputBase
+          placeholder="Search…"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="search-input"
+          autoFocus
+        />
+        <FaSearch className="search-icon" />
         <IconButton onClick={onClose} className="close-button">
           <FaTimes />
         </IconButton>
-      </Box>
-      <Box className="search-content">
-        <Typography variant="h6" className="section-title">
-          {searchQuery ? 'Search Results' : 'Search'}
-        </Typography>
-        {searchQuery && (
-          <Typography variant="body1" className="no-results">
-            No results found matching your search.
-          </Typography>
-        )}
-      </Box>
+      </form>
     </Box>
   );
 };

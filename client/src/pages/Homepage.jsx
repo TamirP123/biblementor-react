@@ -1,12 +1,13 @@
 // Homepage.jsx
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Footer from "../components/Footer";
+import Hero from "../components/Hero";
 import "../styles/HomePage.css";
-const Homepage = () => {
-  
 
+const Homepage = () => {
   return (
     <div className="homepage">
+      <Hero />
       <Footer />
     </div>
   );

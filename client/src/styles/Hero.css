@@ -1,0 +1,61 @@
+.hero {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    border-radius: 8px;
+  }
+  
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .verse-of-the-day {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-top: 10px;
+    color: #00c6ff;
+  }
+  
+  .cta-button {
+    background: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background: linear-gradient(135deg, #00c6ff, #007bff);
+  }
+  
+  .cta-button-verse {
+    background: #00c6ff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button-verse:hover {
+    background: #007bff;
+  }
