@@ -350,3 +350,53 @@ h1 {
 .loading-container p {
   color: #666;
 }
+
+.tooltip-wrapper {
+  display: inline-block; /* Needed for tooltip to work with disabled button */
+}
+
+.verse-save-btn.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #f0f0f0;
+  color: #666;
+}
+
+.verse-save-btn.disabled:hover {
+  background: #f0f0f0;
+  transform: none;
+}
+
+.share-menu .MuiMenuItem-root {
+  padding: 12px 24px;
+}
+
+.share-icon {
+  font-size: 20px;
+}
+
+.share-icon.twitter {
+  color: #1DA1F2;
+}
+
+.share-icon.facebook {
+  color: #4267B2;
+}
+
+.share-icon.whatsapp {
+  color: #25D366;
+}
+
+.verse-share-btn:hover {
+  background: rgba(0, 198, 255, 0.2);
+}
+
+/* Add hover effects for share menu items */
+.MuiMenuItem-root:hover {
+  background-color: rgba(0, 198, 255, 0.1) !important;
+}
+
+/* Style for copy success state */
+.copy-success {
+  color: #00c6ff;
+}

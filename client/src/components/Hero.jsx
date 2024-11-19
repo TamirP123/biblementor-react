@@ -7,6 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { FaTwitter, FaFacebook, FaWhatsapp, FaCopy } from 'react-icons/fa';
+import Auth from "../utils/auth";
 
 const verses = [
   "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future. - Jeremiah 29:11",
@@ -21,6 +28,8 @@ const Hero = () => {
   const [openDemo, setOpenDemo] = useState(false);
   const [demoResponse, setDemoResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [shareAnchorEl, setShareAnchorEl] = useState(null);
+  const [showCopySuccess, setShowCopySuccess] = useState(false);
 
   useEffect(() => {
     const now = new Date();
@@ -37,6 +46,45 @@ const Hero = () => {
       setVerseOfTheDay(verse);
     }
   }, []);
+
+  const handleShareClick = (event) => {
+    setShareAnchorEl(event.currentTarget);
+  };
+
+  const handleShareClose = () => {
+    setShareAnchorEl(null);
+  };
+
+  const handleShare = (platform) => {
+    const shareText = `Daily Bible Verse: ${verseOfTheDay}`;
+    const encodedText = encodeURIComponent(shareText);
+    let shareUrl = '';
+
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&quote=${encodedText}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodedText}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText).then(() => {
+          setShowCopySuccess(true);
+          setTimeout(() => setShowCopySuccess(false), 2000);
+        });
+        break;
+      default:
+        break;
+    }
+
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+    handleShareClose();
+  };
 
   const handleDemoClick = async () => {
     setOpenDemo(true);
@@ -56,6 +104,9 @@ const Hero = () => {
     setOpenDemo(false);
     setDemoResponse("");
   };
+
+  const isLoggedIn = Auth.loggedIn();
+  const saveButtonText = isLoggedIn ? "Save" : "Login to Save Verses";
 
   return (
     <div className="hero">
@@ -97,12 +148,59 @@ const Hero = () => {
               {verseOfTheDay}
             </p>
             <div className="verse-footer">
-              <button className="verse-share-btn">Share Verse</button>
-              <button className="verse-save-btn">Save</button>
+              <button className="verse-share-btn" onClick={handleShareClick}>
+                Share Verse
+              </button>
+              <Tooltip 
+                title={!isLoggedIn ? "Please login to save verses" : ""}
+                placement="top"
+              >
+                <span className="tooltip-wrapper">
+                  <button 
+                    className={`verse-save-btn ${!isLoggedIn ? 'disabled' : ''}`}
+                    onClick={() => isLoggedIn && handleSaveVerse()}
+                  >
+                    {saveButtonText}
+                  </button>
+                </span>
+              </Tooltip>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Share Menu */}
+      <Menu
+        anchorEl={shareAnchorEl}
+        open={Boolean(shareAnchorEl)}
+        onClose={handleShareClose}
+        className="share-menu"
+      >
+        <MenuItem onClick={() => handleShare('twitter')}>
+          <ListItemIcon>
+            <FaTwitter className="share-icon twitter" />
+          </ListItemIcon>
+          <ListItemText>Share on Twitter</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => handleShare('facebook')}>
+          <ListItemIcon>
+            <FaFacebook className="share-icon facebook" />
+          </ListItemIcon>
+          <ListItemText>Share on Facebook</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => handleShare('whatsapp')}>
+          <ListItemIcon>
+            <FaWhatsapp className="share-icon whatsapp" />
+          </ListItemIcon>
+          <ListItemText>Share on WhatsApp</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => handleShare('copy')}>
+          <ListItemIcon>
+            <FaCopy className="share-icon" />
+          </ListItemIcon>
+          <ListItemText>{showCopySuccess ? 'Copied!' : 'Copy to Clipboard'}</ListItemText>
+        </MenuItem>
+      </Menu>
 
       <Dialog
         open={openDemo}
