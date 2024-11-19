@@ -8,6 +8,11 @@ import {
   Select,
   MenuItem,
   CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
 } from "@mui/material";
 import "../styles/Bible.css";
 
@@ -29,6 +34,10 @@ const Bible = () => {
   const [verses, setVerses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [bibleVersion, setBibleVersion] = useState(BIBLE_VERSIONS[0]);
+  const [selectedVerses, setSelectedVerses] = useState([]);
+  const [aiDialogOpen, setAiDialogOpen] = useState(false);
+  const [aiResponse, setAiResponse] = useState("");
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   useEffect(() => {
     fetchBooks();
@@ -144,6 +153,52 @@ const Bible = () => {
     </div>
   );
 
+  const handleVerseClick = (verse) => {
+    if (selectedVerses.find(v => v.id === verse.id)) {
+      setSelectedVerses(selectedVerses.filter(v => v.id !== verse.id));
+    } else {
+      setSelectedVerses([...selectedVerses, verse]);
+    }
+  };
+
+  const handleAnalyzeVerses = async () => {
+    setAiDialogOpen(true);
+    setIsAnalyzing(true);
+    
+    try {
+      // Format verses for the prompt
+      const versesText = selectedVerses
+        .map(verse => `${verse.reference}: ${verse.content.replace(/(<([^>]+)>)/gi, "")}`)
+        .join("\n");
+
+      // Simulate AI response for now
+      setTimeout(() => {
+        setAiResponse(
+          "This is a placeholder AI response. Once integrated with OpenAI, this will provide detailed analysis of the selected verses, including historical context, interpretation, and application."
+        );
+        setIsAnalyzing(false);
+      }, 1500);
+
+      // Once OpenAI is integrated, replace with actual API call:
+      /*
+      const response = await generateBibleResponse(
+        `Please analyze these Bible verses and provide insight:\n${versesText}`
+      );
+      setAiResponse(response);
+      */
+    } catch (error) {
+      console.error("Error analyzing verses:", error);
+      setAiResponse("Sorry, there was an error analyzing the verses. Please try again.");
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleCloseAiDialog = () => {
+    setAiDialogOpen(false);
+    setAiResponse("");
+  };
+
   return (
     <div className="bible-container">
       <Container maxWidth="xl" className="bible-content">
@@ -221,9 +276,35 @@ const Bible = () => {
                 {books.find((b) => b.id === selectedBook)?.name}{" "}
                 {selectedChapter.split(".").pop()}
               </Typography>
+
+              {selectedVerses.length > 0 && (
+                <div className="verse-actions">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleAnalyzeVerses}
+                    className="analyze-button"
+                  >
+                    Analyze {selectedVerses.length} Selected Verse{selectedVerses.length > 1 ? 's' : ''}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => setSelectedVerses([])}
+                    className="clear-button"
+                  >
+                    Clear Selection
+                  </Button>
+                </div>
+              )}
+
               <div className="verses-content">
                 {verses.map((verse) => (
-                  <span key={verse.id} id={verse.id} className="verse-wrapper">
+                  <span 
+                    key={verse.id} 
+                    id={verse.id} 
+                    className={`verse-wrapper ${selectedVerses.find(v => v.id === verse.id) ? 'selected' : ''}`}
+                    onClick={() => handleVerseClick(verse)}
+                  >
                     <span className="verse-number">
                       {verse.reference.split(" ").pop()}
                     </span>
@@ -242,6 +323,46 @@ const Bible = () => {
           )}
         </div>
       </Container>
+
+      <Dialog
+        open={aiDialogOpen}
+        onClose={handleCloseAiDialog}
+        maxWidth="md"
+        fullWidth
+        className="ai-dialog"
+      >
+        <DialogTitle>AI Analysis of Selected Verses</DialogTitle>
+        <DialogContent>
+          <div className="selected-verses">
+            <Typography variant="h6">Selected Verses:</Typography>
+            {selectedVerses.map((verse) => (
+              <div key={verse.id} className="selected-verse">
+                <Typography variant="subtitle1" color="primary">
+                  {verse.reference}
+                </Typography>
+                <Typography>
+                  {verse.content.replace(/(<([^>]+)>)/gi, "")}
+                </Typography>
+              </div>
+            ))}
+          </div>
+
+          <div className="ai-analysis">
+            <Typography variant="h6">Analysis:</Typography>
+            {isAnalyzing ? (
+              <div className="analysis-loading">
+                <CircularProgress size={30} />
+                <Typography>Analyzing verses...</Typography>
+              </div>
+            ) : (
+              <Typography>{aiResponse}</Typography>
+            )}
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseAiDialog}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

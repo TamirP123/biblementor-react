@@ -12,7 +12,7 @@ const AskAI = () => {
     e.preventDefault();
     if (!question.trim()) return;
 
-    // Add user's question to messages
+
     const newMessage = {
       type: 'user',
       content: question,

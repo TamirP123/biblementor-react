@@ -200,4 +200,179 @@
   align-items: center;
   gap: 20px;
   padding: 40px;
+}
+
+.verse-wrapper {
+  display: inline;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.verse-wrapper:hover {
+  background-color: rgba(0, 198, 255, 0.1);
+}
+
+.verse-wrapper.selected {
+  background-color: rgba(0, 198, 255, 0.2);
+}
+
+.verse-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.analyze-button {
+  background: linear-gradient(135deg, #00c6ff, #0072ff) !important;
+  color: white !important;
+  padding: 8px 20px !important;
+}
+
+.clear-button {
+  color: #00c6ff !important;
+  border-color: #00c6ff !important;
+}
+
+.ai-dialog .MuiDialog-paper {
+  background: white !important;
+  border-radius: 20px !important;
+  padding: 30px !important;
+  max-width: 800px !important;
+  box-shadow: 0 20px 40px rgba(0, 198, 255, 0.15) !important;
+  border: 1px solid rgba(0, 198, 255, 0.1) !important;
+}
+
+.ai-dialog .MuiDialogTitle-root {
+  padding: 0 0 20px 0 !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  text-align: center !important;
+  border-bottom: 1px solid rgba(0, 198, 255, 0.1) !important;
+}
+
+.ai-dialog .MuiDialogContent-root {
+  padding: 24px 0 !important;
+}
+
+.selected-verses {
+  margin: 20px 0 30px;
+  padding: 25px;
+  background: rgba(0, 198, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 198, 255, 0.1);
+}
+
+.selected-verses h6 {
+  color: #1a1a1a !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 20px !important;
+}
+
+.selected-verse {
+  margin: 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 198, 255, 0.1);
+}
+
+.selected-verse:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.selected-verse .MuiTypography-subtitle1 {
+  color: #00c6ff !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+.selected-verse p {
+  color: #333 !important;
+  line-height: 1.6 !important;
+  font-size: 1.1rem !important;
+}
+
+.ai-analysis {
+  margin-top: 30px;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 198, 255, 0.1);
+  border: 1px solid rgba(0, 198, 255, 0.1);
+}
+
+.ai-analysis h6 {
+  color: #1a1a1a !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 20px !important;
+}
+
+.ai-analysis p {
+  color: #333 !important;
+  line-height: 1.8 !important;
+  font-size: 1.1rem !important;
+}
+
+.analysis-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.analysis-loading .MuiCircularProgress-root {
+  color: #00c6ff !important;
+}
+
+.analysis-loading p {
+  color: #666 !important;
+  font-size: 1rem !important;
+}
+
+.ai-dialog .MuiDialogActions-root {
+  padding: 20px 0 0 0 !important;
+  border-top: 1px solid rgba(0, 198, 255, 0.1) !important;
+}
+
+.ai-dialog .MuiButton-root {
+  background: linear-gradient(135deg, #00c6ff, #0072ff) !important;
+  color: white !important;
+  padding: 8px 24px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.ai-dialog .MuiButton-root:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(0, 198, 255, 0.2) !important;
+}
+
+@media (max-width: 768px) {
+  .ai-dialog .MuiDialog-paper {
+    margin: 20px !important;
+    padding: 20px !important;
+  }
+
+  .ai-dialog .MuiDialogTitle-root {
+    font-size: 1.5rem !important;
+  }
+
+  .selected-verses,
+  .ai-analysis {
+    padding: 15px;
+  }
+
+  .selected-verse p,
+  .ai-analysis p {
+    font-size: 1rem !important;
+  }
 } 

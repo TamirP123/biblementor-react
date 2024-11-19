@@ -106,7 +106,7 @@ const Hero = () => {
   };
 
   const isLoggedIn = Auth.loggedIn();
-  const saveButtonText = isLoggedIn ? "Save" : "Login to Save Verses";
+  const saveButtonText = isLoggedIn ? "Save" : "Save Verse";
 
   return (
     <div className="hero">
