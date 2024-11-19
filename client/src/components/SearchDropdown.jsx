@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react';
-import { Box, InputBase, IconButton } from '@mui/material';
-import { FaSearch, FaTimes } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Box, InputBase } from '@mui/material';
+import { FaSearch } from 'react-icons/fa';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/SearchDropdown.css';
 
-const SearchDropdown = ({ onClose, onSubmit, searchQuery, setSearchQuery }) => {
-  useEffect(() => {}, [searchQuery]);
+const SearchDropdown = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Reset search when location changes
+  React.useEffect(() => {
+    setSearchQuery('');
+  }, [location]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -13,8 +21,9 @@ const SearchDropdown = ({ onClose, onSubmit, searchQuery, setSearchQuery }) => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      onSubmit(searchQuery.trim());
-      onClose();
+      // Force navigation even if on same route
+      navigate('/', { replace: true });
+      navigate(`/search/${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -22,16 +31,12 @@ const SearchDropdown = ({ onClose, onSubmit, searchQuery, setSearchQuery }) => {
     <Box className="search-dropdown">
       <form onSubmit={handleSearchSubmit} className="search-form">
         <InputBase
-          placeholder="Search…"
+          placeholder="Search Bible..."
           value={searchQuery}
           onChange={handleSearchChange}
           className="search-input"
-          autoFocus
         />
-        <FaSearch className="search-icon" />
-        <IconButton onClick={onClose} className="close-button">
-          <FaTimes />
-        </IconButton>
+        <FaSearch className="search-icon" onClick={handleSearchSubmit} />
       </form>
     </Box>
   );
