@@ -16,7 +16,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import BiblePage from "./pages/BiblePage.jsx";
-
+import AskAI from "./pages/AskAI.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "bible",
         element: <BiblePage/>,
+      },
+      {
+        path: "ask-ai",
+        element: <AskAI />,
       },
     ],
   },

@@ -12,6 +12,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import Footer from "./components/Footer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AskAI from "./pages/AskAI";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
