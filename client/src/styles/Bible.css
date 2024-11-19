@@ -1,8 +1,29 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .bible-container {
   min-height: calc(100vh - 64px);
   background: #ffffff;
   padding: 40px 20px;
   margin-top: 64px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .bible-content {
@@ -18,6 +39,7 @@
   color: #333333;
   margin-bottom: 40px !important;
   padding-top: 20px;
+  animation: slideUp 0.8s ease-out;
 }
 
 .highlight {
@@ -32,6 +54,7 @@
   border-bottom: 1px solid #e0e0e0;
   z-index: 1000;
   padding: 10px 0;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
 }
 
 .bible-controls {
@@ -42,6 +65,7 @@
   align-items: center;
   gap: 16px;
   padding: 0 20px;
+  animation: fadeIn 0.8s ease-out 0.4s backwards;
 }
 
 .bible-select {
@@ -75,6 +99,7 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.8s ease-out 0.4s backwards;
 }
 
 /* Default content styles */
@@ -82,6 +107,7 @@
   text-align: center;
   padding: 60px 20px;
   color: #666666;
+  animation: slideUp 0.8s ease-out 0.6s backwards;
 }
 
 .welcome-title {
@@ -89,17 +115,20 @@
   font-weight: 700 !important;
   color: #333333;
   margin-bottom: 16px !important;
+  animation: slideUp 0.8s ease-out 0.8s backwards;
 }
 
 .welcome-subtitle {
   font-size: 1.1rem !important;
   color: #666666;
   margin-bottom: 32px !important;
+  animation: slideUp 0.8s ease-out 1s backwards;
 }
 
 .welcome-icon {
   font-size: 4rem;
   margin-bottom: 20px;
+  animation: fadeIn 1s ease-out 1.2s backwards;
 }
 
 .chapter-title {
@@ -108,6 +137,7 @@
   font-weight: 700 !important;
   color: #333333;
   margin-bottom: 32px !important;
+  animation: slideUp 0.8s ease-out;
 }
 
 .verses-content {
@@ -116,6 +146,8 @@
   line-height: 1.8;
   color: #333333;
   text-align: justify;
+  display: flex;
+  flex-direction: column;
 }
 
 .verse-item {
@@ -208,6 +240,8 @@
   padding: 2px 4px;
   border-radius: 4px;
   transition: all 0.2s ease;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 .verse-wrapper:hover {
@@ -223,6 +257,7 @@
   gap: 10px;
   margin-bottom: 20px;
   justify-content: center;
+  animation: slideUp 0.8s ease-out;
 }
 
 .analyze-button {
@@ -243,6 +278,7 @@
   max-width: 800px !important;
   box-shadow: 0 20px 40px rgba(0, 198, 255, 0.15) !important;
   border: 1px solid rgba(0, 198, 255, 0.1) !important;
+  animation: slideUp 0.5s ease-out;
 }
 
 .ai-dialog .MuiDialogTitle-root {
@@ -264,6 +300,7 @@
   background: rgba(0, 198, 255, 0.05);
   border-radius: 15px;
   border: 1px solid rgba(0, 198, 255, 0.1);
+  animation: fadeIn 0.8s ease-out;
 }
 
 .selected-verses h6 {
@@ -303,6 +340,7 @@
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 198, 255, 0.1);
   border: 1px solid rgba(0, 198, 255, 0.1);
+  animation: slideUp 0.8s ease-out 0.2s backwards;
 }
 
 .ai-analysis h6 {
@@ -374,5 +412,21 @@
   .selected-verse p,
   .ai-analysis p {
     font-size: 1rem !important;
+  }
+}
+
+/* Add staggered animations for verses */
+.verse-wrapper:nth-child(1) { animation-delay: 0.2s; }
+.verse-wrapper:nth-child(2) { animation-delay: 0.3s; }
+.verse-wrapper:nth-child(3) { animation-delay: 0.4s; }
+.verse-wrapper:nth-child(4) { animation-delay: 0.5s; }
+.verse-wrapper:nth-child(5) { animation-delay: 0.6s; }
+/* Continue for more verses if needed */
+
+/* Add a preference media query for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 } 
