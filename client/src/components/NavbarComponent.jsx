@@ -61,7 +61,6 @@ const NavbarComponent = () => {
 
   const mobileMenuItems = [
     { text: 'Bible', path: '/bible' },
-    { text: 'Topics', path: '/' },
     { text: 'AI Insights', path: '/ask-ai' },
   ];
 
@@ -83,9 +82,6 @@ const NavbarComponent = () => {
             <Box className="navbar-links">
               <Link to="/bible" style={{ textDecoration: "none" }}>
                 <a href="#" className="nav-link">Bible</a>
-              </Link>
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <a href="#" className="nav-link">Topics</a>
               </Link>
               <Link to="/ask-ai" style={{ textDecoration: "none" }}>
                 <a href="#" className="nav-link">Ask AI</a>
