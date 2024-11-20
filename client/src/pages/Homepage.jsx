@@ -2,7 +2,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
-import TopicExplorer from "../components/TopicExplorer";
+import ImpactStats from "../components/ImpactStats";
 import "../styles/HomePage.css";
 
 const Homepage = () => {
@@ -10,8 +10,7 @@ const Homepage = () => {
     <div className="homepage">
       <Hero />
       <Features />
-      <TopicExplorer />
-      
+      <ImpactStats />
     </div>
   );
 };

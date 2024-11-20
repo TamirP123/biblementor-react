@@ -60,9 +60,9 @@ const NavbarComponent = () => {
   };
 
   const mobileMenuItems = [
-    { text: 'Bible', path: '/' },
+    { text: 'Bible', path: '/bible' },
     { text: 'Topics', path: '/' },
-    { text: 'AI Insights', path: '/' },
+    { text: 'AI Insights', path: '/ask-ai' },
   ];
 
   return (
