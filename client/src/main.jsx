@@ -18,6 +18,7 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import BiblePage from "./pages/BiblePage.jsx";
 import AskAI from "./pages/AskAI.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
+import VersesPage from "./pages/VersesPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: 'search/:query',
         element: <SearchResults />,
+      },
+      {
+        path: 'verses/',
+        element: <VersesPage />,
       },
     ],
   },

@@ -125,7 +125,7 @@ const NavbarComponent = () => {
                 <MenuItem onClick={handleAccountClose} component={Link} to="/orders">
                   Prayer Requests
                 </MenuItem>
-                <MenuItem onClick={handleAccountClose} component={Link} to="/favorites">
+                <MenuItem onClick={handleAccountClose} component={Link} to="/verses">
                   My Verses
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -164,7 +164,7 @@ const NavbarComponent = () => {
                 <ListItem button component={Link} to="/orders">
                   <ListItemText primary="Prayer Requests" />
                 </ListItem>
-                <ListItem button component={Link} to="/favorites">
+                <ListItem button component={Link} to="/verses">
                   <ListItemText primary="My Verses" />
                 </ListItem>
                 <ListItem button onClick={handleLogout}>

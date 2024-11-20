@@ -14,12 +14,11 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate('favorites');
-        console.log("User from database:", user);
-        console.log("Number of favorites:", user.favorites.length);
-        return user;
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password');
+        return userData;
       }
-      throw new AuthenticationError("Not authenticated");
+      throw new AuthenticationError('Not logged in');
     },
   },
 
@@ -99,6 +98,49 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error with Apple login: ' + error.message);
       }
+    },
+
+    saveVerse: async (parent, { verse }, context) => {
+      if (context.user) {
+        try {
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user._id,
+            {
+              $addToSet: { 
+                savedVerses: {
+                  verse,
+                  savedAt: new Date()
+                }
+              }
+            },
+            { new: true }
+          );
+          return updatedUser;
+        } catch (err) {
+          throw new Error('Error saving verse');
+        }
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+
+    removeVerse: async (parent, { verse }, context) => {
+      if (context.user) {
+        try {
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user._id,
+            {
+              $pull: {
+                savedVerses: { verse }
+              }
+            },
+            { new: true }
+          );
+          return updatedUser;
+        } catch (err) {
+          throw new Error('Error removing verse');
+        }
+      }
+      throw new AuthenticationError('Not logged in');
     },
   },
 };

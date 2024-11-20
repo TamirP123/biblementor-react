@@ -50,3 +50,29 @@ export const LOGIN_WITH_APPLE = gql`
   }
 `;
 
+export const SAVE_VERSE = gql`
+  mutation saveVerse($verse: String!) {
+    saveVerse(verse: $verse) {
+      _id
+      username
+      savedVerses {
+        verse
+        savedAt
+      }
+    }
+  }
+`;
+
+export const REMOVE_VERSE = gql`
+  mutation removeVerse($verse: String!) {
+    removeVerse(verse: $verse) {
+      _id
+      username
+      savedVerses {
+        verse
+        savedAt
+      }
+    }
+  }
+`;
+

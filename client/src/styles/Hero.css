@@ -400,3 +400,15 @@ h1 {
 .copy-success {
   color: #00c6ff;
 }
+
+.verse-save-btn.saved {
+  background-color: #dc3545;
+}
+
+.verse-save-btn.saved:hover {
+  background-color: #c82333;
+}
+
+.tooltip-wrapper {
+  display: inline-block;
+}

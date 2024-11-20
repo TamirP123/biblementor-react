@@ -14,6 +14,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { FaTwitter, FaFacebook, FaWhatsapp, FaCopy } from 'react-icons/fa';
 import Auth from "../utils/auth";
+import { useMutation, useQuery } from '@apollo/client';
+import { SAVE_VERSE, REMOVE_VERSE } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
+import { Snackbar, Alert } from '@mui/material';
 
 const verses = [
   "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future. - Jeremiah 29:11",
@@ -30,6 +34,10 @@ const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [shareAnchorEl, setShareAnchorEl] = useState(null);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: '', type: 'success' });
+  const [saveVerse] = useMutation(SAVE_VERSE);
+  const [removeVerse] = useMutation(REMOVE_VERSE);
+  const { data: userData, loading: userLoading } = useQuery(GET_ME);
 
   useEffect(() => {
     const now = new Date();
@@ -108,6 +116,94 @@ const Hero = () => {
   const isLoggedIn = Auth.loggedIn();
   const saveButtonText = isLoggedIn ? "Save" : "Save Verse";
 
+  const isVerseSaved = userData?.me?.savedVerses?.some(
+    (saved) => saved.verse === verseOfTheDay
+  );
+
+  const handleSaveVerse = async () => {
+    if (!isLoggedIn) return;
+
+    try {
+      if (isVerseSaved) {
+        await removeVerse({
+          variables: { verse: verseOfTheDay },
+          update: (cache) => {
+            try {
+              const existingData = cache.readQuery({ query: GET_ME });
+              if (existingData && existingData.me) {
+                cache.writeQuery({
+                  query: GET_ME,
+                  data: {
+                    me: {
+                      ...existingData.me,
+                      _id: existingData.me._id,
+                      username: existingData.me.username,
+                      email: existingData.me.email,
+                      savedVerses: existingData.me.savedVerses.filter(v => v.verse !== verseOfTheDay)
+                    }
+                  }
+                });
+              }
+            } catch (err) {
+              console.log('Cache update error:', err);
+            }
+          }
+        });
+        setNotification({
+          open: true,
+          message: 'Verse removed successfully!',
+          type: 'success'
+        });
+      } else {
+        const currentDate = new Date().toISOString();
+        await saveVerse({
+          variables: { verse: verseOfTheDay },
+          update: (cache, { data: { saveVerse } }) => {
+            try {
+              const existingData = cache.readQuery({ query: GET_ME });
+              if (existingData && existingData.me) {
+                const newSavedVerse = { verse: verseOfTheDay, savedAt: currentDate };
+                
+                cache.writeQuery({
+                  query: GET_ME,
+                  data: {
+                    me: {
+                      _id: existingData.me._id,
+                      username: existingData.me.username,
+                      email: existingData.me.email,
+                      savedVerses: [...existingData.me.savedVerses, newSavedVerse]
+                    }
+                  }
+                });
+              }
+            } catch (err) {
+              console.log('Cache update error:', err);
+            }
+          }
+        });
+        setNotification({
+          open: true,
+          message: 'Verse saved successfully!',
+          type: 'success'
+        });
+      }
+    } catch (err) {
+      console.error('Error handling verse:', err);
+      setNotification({
+        open: true,
+        message: 'Error handling verse. Please try again.',
+        type: 'error'
+      });
+    }
+  };
+
+  const handleCloseNotification = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setNotification({ ...notification, open: false });
+  };
+
   return (
     <div className="hero">
       <div className="hero-background">
@@ -157,10 +253,11 @@ const Hero = () => {
               >
                 <span className="tooltip-wrapper">
                   <button 
-                    className={`verse-save-btn ${!isLoggedIn ? 'disabled' : ''}`}
+                    className={`verse-save-btn ${!isLoggedIn ? 'disabled' : ''} ${isVerseSaved ? 'saved' : ''}`}
                     onClick={() => isLoggedIn && handleSaveVerse()}
+                    disabled={!isLoggedIn}
                   >
-                    {saveButtonText}
+                    {isVerseSaved ? "Remove Saved Verse" : "Save Verse"}
                   </button>
                 </span>
               </Tooltip>
@@ -233,6 +330,22 @@ const Hero = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Add Snackbar for notifications */}
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={3000} 
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseNotification} 
+          severity={notification.type} 
+          sx={{ width: '100%' }}
+        >
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
