@@ -61,6 +61,22 @@ function LoginPage() {
     });
   };
 
+  const handleDemoLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { 
+          email: "user@gmail.com", 
+          password: "password" 
+        },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="animated-background">
@@ -128,6 +144,10 @@ function LoginPage() {
               Sign In
             </button>
           </form>
+          
+          <button onClick={handleDemoLogin} className="auth-button demo-button">
+            Demo User
+          </button>
           
           {error && (
             <div className="error-message">

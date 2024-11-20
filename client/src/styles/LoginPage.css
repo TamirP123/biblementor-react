@@ -357,3 +357,12 @@ input:focus {
   color: #666;
   font-size: 14px;
 }
+
+.demo-button {
+  margin-top: 10px;
+  background-color: #6b7280;
+}
+
+.demo-button:hover {
+  background-color: #4b5563;
+}

@@ -36,7 +36,7 @@ const client = new ApolloClient({
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
 
