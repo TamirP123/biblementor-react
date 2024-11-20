@@ -136,7 +136,11 @@ const VersesPage = () => {
               <div className="verse-content">
                 <p className="verse-text">{savedVerse.verse}</p>
                 <p className="saved-date">
-                  Saved on {new Date(savedVerse.savedAt).toLocaleDateString()}
+                  Saved on {new Date(parseInt(savedVerse.savedAt) || savedVerse.savedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </p>
               </div>
               <div className="verse-actions">

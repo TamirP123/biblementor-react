@@ -162,7 +162,11 @@ const Hero = () => {
             try {
               const existingData = cache.readQuery({ query: GET_ME });
               if (existingData && existingData.me) {
-                const newSavedVerse = { verse: verseOfTheDay, savedAt: currentDate };
+                const newSavedVerse = { 
+                  verse: verseOfTheDay, 
+                  savedAt: currentDate,
+                  __typename: 'SavedVerse'
+                };
                 
                 cache.writeQuery({
                   query: GET_ME,
@@ -171,7 +175,8 @@ const Hero = () => {
                       _id: existingData.me._id,
                       username: existingData.me.username,
                       email: existingData.me.email,
-                      savedVerses: [...existingData.me.savedVerses, newSavedVerse]
+                      savedVerses: [...existingData.me.savedVerses, newSavedVerse],
+                      __typename: 'User'
                     }
                   }
                 });
@@ -257,7 +262,7 @@ const Hero = () => {
                     onClick={() => isLoggedIn && handleSaveVerse()}
                     disabled={!isLoggedIn}
                   >
-                    {isVerseSaved ? "Remove Saved Verse" : "Save Verse"}
+                    {isVerseSaved ? "Remove" : "Save Verse"}
                   </button>
                 </span>
               </Tooltip>

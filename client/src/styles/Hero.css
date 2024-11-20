@@ -402,11 +402,14 @@ h1 {
 }
 
 .verse-save-btn.saved {
-  background-color: #dc3545;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
 }
 
 .verse-save-btn.saved:hover {
-  background-color: #c82333;
+  background-color: #ff3333;
 }
 
 .tooltip-wrapper {
