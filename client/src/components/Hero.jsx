@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Hero.css";
+import { Link } from "react-router-dom";
 import { generateBibleResponse } from "../utils/openai";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -228,9 +229,11 @@ const Hero = () => {
             Your intelligent companion for deeper biblical understanding and spiritual growth
           </p>
           <div className="cta-container">
+            <Link to="/bible">
             <button className="cta-button primary">
               Start Exploring
             </button>
+            </Link>
             <button 
               className="cta-button secondary"
               onClick={handleDemoClick}

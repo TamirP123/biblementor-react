@@ -22,9 +22,9 @@ const Footer = () => {
             <h4>Quick Links</h4>
             <ul>
               <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="/ask-ai">Ask AI</a></li>
+              <li><a href="/bible">Bible</a></li>
+              <li><a href="https://www.linkedin.com/in/tamir-phillips-6096922ba/">Contact</a></li>
             </ul>
           </div>
 

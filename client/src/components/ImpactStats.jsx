@@ -24,13 +24,13 @@ const ImpactStats = () => {
 
   const stats = [
     {
-      number: "10K+",
-      label: "Bible Verses Explored",
-      description: "Deep spiritual insights and contextual understanding provided",
+      number: "24/7",
+      label: "Bible Verses Available",
+      description: "Access to a vast library of Bible verses for your study and reflection",
       icon: "📖"
     },
     {
-      number: "5K+",
+      number: "100+",
       label: "Lives Impacted",
       description: "Growing community of believers strengthened in their faith",
       icon: "🙏"
