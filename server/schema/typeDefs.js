@@ -4,6 +4,22 @@ const typeDefs = `
     savedAt: String!
   }
 
+  type PrayerRequest {
+    _id: ID!
+    title: String!
+    description: String!
+    status: String!
+    category: String!
+    createdAt: String!
+    answeredAt: String
+  }
+
+  input PrayerRequestInput {
+    title: String!
+    description: String!
+    category: String!
+  }
+
   type User {
     _id: ID!
     username: String!
@@ -12,12 +28,14 @@ const typeDefs = `
     appleId: String
     isAdmin: Boolean
     savedVerses: [SavedVerse]
+    prayerRequests: [PrayerRequest]
   }
 
   type Query {
     users: [User]
     user(username: String!): User
     me: User
+    getPrayerRequests: [PrayerRequest]
   }
 
   type Auth {
@@ -32,6 +50,9 @@ const typeDefs = `
     loginWithApple(email: String!, name: String!, appleId: String!): Auth
     saveVerse(verse: String!): User
     removeVerse(verse: String!): User
+    createPrayerRequest(input: PrayerRequestInput!): User
+    updatePrayerStatus(prayerRequestId: ID!, status: String!): User
+    deletePrayerRequest(prayerRequestId: ID!): User
   }
 `;
 

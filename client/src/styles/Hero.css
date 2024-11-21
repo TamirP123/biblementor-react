@@ -293,7 +293,7 @@ h1 {
 @media (max-width: 480px) {
   .hero {
     min-height: calc(100vh - 160px);
-    margin-top: 160px;
+    margin-top: 70px;
     padding: 40px 20px;
   }
 

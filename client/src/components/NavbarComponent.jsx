@@ -122,7 +122,7 @@ const NavbarComponent = () => {
                 onClose={handleAccountClose}
                 className="account-menu"
               >
-                <MenuItem onClick={handleAccountClose} component={Link} to="/orders">
+                <MenuItem onClick={handleAccountClose} component={Link} to="/prayer-requests">
                   Prayer Requests
                 </MenuItem>
                 <MenuItem onClick={handleAccountClose} component={Link} to="/verses">
@@ -161,7 +161,7 @@ const NavbarComponent = () => {
             ))}
             {Auth.loggedIn() ? (
               <>
-                <ListItem button component={Link} to="/orders">
+                <ListItem button component={Link} to="/prayer-requests">
                   <ListItemText primary="Prayer Requests" />
                 </ListItem>
                 <ListItem button component={Link} to="/verses">

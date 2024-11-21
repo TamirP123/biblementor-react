@@ -76,3 +76,44 @@ export const REMOVE_VERSE = gql`
   }
 `;
 
+export const CREATE_PRAYER_REQUEST = gql`
+  mutation createPrayerRequest($input: PrayerRequestInput!) {
+    createPrayerRequest(input: $input) {
+      _id
+      prayerRequests {
+        _id
+        title
+        description
+        status
+        category
+        createdAt
+        answeredAt
+      }
+    }
+  }
+`;
+
+export const UPDATE_PRAYER_STATUS = gql`
+  mutation updatePrayerStatus($prayerRequestId: ID!, $status: String!) {
+    updatePrayerStatus(prayerRequestId: $prayerRequestId, status: $status) {
+      _id
+      prayerRequests {
+        _id
+        status
+        answeredAt
+      }
+    }
+  }
+`;
+
+export const DELETE_PRAYER_REQUEST = gql`
+  mutation deletePrayerRequest($prayerRequestId: ID!) {
+    deletePrayerRequest(prayerRequestId: $prayerRequestId) {
+      _id
+      prayerRequests {
+        _id
+      }
+    }
+  }
+`;
+

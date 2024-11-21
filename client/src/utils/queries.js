@@ -43,3 +43,17 @@ export const GET_ME = gql`
   }
 `;
 
+export const GET_PRAYER_REQUESTS = gql`
+  query getPrayerRequests {
+    getPrayerRequests {
+      _id
+      title
+      description
+      status
+      category
+      createdAt
+      answeredAt
+    }
+  }
+`;
+

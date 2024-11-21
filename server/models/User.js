@@ -41,6 +41,33 @@ const userSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     }
+  }],
+  prayerRequests: [{
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    status: {
+      type: String,
+      enum: ['Active', 'Answered', 'In Progress'],
+      default: 'Active'
+    },
+    category: {
+      type: String,
+      enum: ['Personal', 'Family', 'Health', 'Spiritual', 'Other'],
+      default: 'Personal'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
+    answeredAt: {
+      type: Date
+    }
   }]
 });
 

@@ -19,6 +19,8 @@ import BiblePage from "./pages/BiblePage.jsx";
 import AskAI from "./pages/AskAI.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import VersesPage from "./pages/VersesPage.jsx";
+import PrayerRequestsPage from "./pages/PrayerRequestsPage.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: 'verses/',
         element: <VersesPage />,
+      },
+      {
+        path: 'prayer-requests/',
+        element: <PrayerRequestsPage />,
       },
     ],
   },

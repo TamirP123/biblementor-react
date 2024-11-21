@@ -20,6 +20,13 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    getPrayerRequests: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id);
+        return user.prayerRequests;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
   },
 
   Mutation: {
@@ -139,6 +146,70 @@ const resolvers = {
         } catch (err) {
           throw new Error('Error removing verse');
         }
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+
+    createPrayerRequest: async (parent, { input }, context) => {
+      if (context.user) {
+        try {
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user._id,
+            {
+              $push: {
+                prayerRequests: {
+                  ...input,
+                  status: 'Active',
+                  createdAt: new Date(),
+                }
+              }
+            },
+            { 
+              new: true,
+              runValidators: true
+            }
+          );
+          return updatedUser;
+        } catch (err) {
+          console.error('Error creating prayer request:', err);
+          throw new Error('Failed to create prayer request');
+        }
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+
+    updatePrayerStatus: async (parent, { prayerRequestId, status }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { 
+            _id: context.user._id,
+            "prayerRequests._id": prayerRequestId 
+          },
+          {
+            $set: {
+              "prayerRequests.$.status": status,
+              "prayerRequests.$.answeredAt": status === 'Answered' ? new Date() : null
+            }
+          },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+
+    deletePrayerRequest: async (parent, { prayerRequestId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          {
+            $pull: {
+              prayerRequests: { _id: prayerRequestId }
+            }
+          },
+          { new: true }
+        );
+        return updatedUser;
       }
       throw new AuthenticationError('Not logged in');
     },

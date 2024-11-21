@@ -14,6 +14,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import AskAI from "./pages/AskAI";
+import './styles/GlobalStyles.css';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -50,7 +51,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <ScrollToTop />
           {!isAdmin && <NavbarComponent />}
-          <main className="main-content">
+          <main className="main-content page-container">
             <Outlet />
           </main>
           <Footer/>
