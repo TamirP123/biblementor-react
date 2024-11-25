@@ -11,12 +11,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useMediaQuery } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 // Import React Icons
 import { FaUserCircle } from "react-icons/fa";
@@ -60,8 +60,9 @@ const NavbarComponent = () => {
   };
 
   const mobileMenuItems = [
-    { text: 'Bible', path: '/bible' },
-    { text: 'AI Insights', path: '/ask-ai' },
+    { text: "Bible", path: "/bible" },
+    { text: "AI Insights", path: "/ask-ai" },
+    { text: "Learning Map", path: "/learning-map" },
   ];
 
   return (
@@ -77,20 +78,33 @@ const NavbarComponent = () => {
               Bible Mentor
             </Typography>
           </Link>
-          
+
           {!isMobile && (
             <Box className="navbar-links">
               <Link to="/bible" style={{ textDecoration: "none" }}>
-                <a href="#" className="nav-link">Bible</a>
+                <a href="#" className="nav-link">
+                  Bible
+                </a>
               </Link>
               <Link to="/ask-ai" style={{ textDecoration: "none" }}>
-                <a href="#" className="nav-link">Ask AI</a>
+                <a href="#" className="nav-link">
+                  Ask AI
+                </a>
+              </Link>
+              <Link to="/learning-map" style={{ textDecoration: "none" }}>
+                <a href="#" className="nav-link">
+                  Learning Map
+                </a>
               </Link>
             </Box>
           )}
         </Box>
 
-        <div className={`search-dropdown-container ${isMobile ? 'mobile-search-top' : ''}`}>
+        <div
+          className={`search-dropdown-container ${
+            isMobile ? "mobile-search-top" : ""
+          }`}
+        >
           <SearchDropdown />
         </div>
 
@@ -122,10 +136,18 @@ const NavbarComponent = () => {
                 onClose={handleAccountClose}
                 className="account-menu"
               >
-                <MenuItem onClick={handleAccountClose} component={Link} to="/prayer-requests">
+                <MenuItem
+                  onClick={handleAccountClose}
+                  component={Link}
+                  to="/prayer-requests"
+                >
                   Prayer Requests
                 </MenuItem>
-                <MenuItem onClick={handleAccountClose} component={Link} to="/verses">
+                <MenuItem
+                  onClick={handleAccountClose}
+                  component={Link}
+                  to="/verses"
+                >
                   My Verses
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -133,7 +155,9 @@ const NavbarComponent = () => {
             </>
           ) : !isMobile ? (
             <Link to="/login" style={{ textDecoration: "none" }}>
-              <a href="#" className="login-link">Login</a>
+              <a href="#" className="login-link">
+                Login
+              </a>
             </Link>
           ) : null}
         </Box>
@@ -149,10 +173,10 @@ const NavbarComponent = () => {
         <Box className="mobile-menu">
           <List>
             {mobileMenuItems.map((item) => (
-              <ListItem 
-                button 
-                key={item.text} 
-                component={Link} 
+              <ListItem
+                button
+                key={item.text}
+                component={Link}
                 to={item.path}
                 onClick={toggleMobileMenu}
               >

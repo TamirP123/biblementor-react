@@ -14,18 +14,19 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password');
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
         return userData;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     getPrayerRequests: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id);
         return user.prayerRequests;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
   },
 
@@ -68,7 +69,7 @@ const resolvers = {
               username: name,
               email,
               googleId,
-              password: 'GOOGLE-AUTH-USER',
+              password: "GOOGLE-AUTH-USER",
             });
           }
         }
@@ -76,7 +77,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (error) {
-        throw new Error('Error with Google login: ' + error.message);
+        throw new Error("Error with Google login: " + error.message);
       }
     },
 
@@ -95,7 +96,7 @@ const resolvers = {
               username: name,
               email,
               appleId,
-              password: 'APPLE-AUTH-USER',
+              password: "APPLE-AUTH-USER",
             });
           }
         }
@@ -103,7 +104,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (error) {
-        throw new Error('Error with Apple login: ' + error.message);
+        throw new Error("Error with Apple login: " + error.message);
       }
     },
 
@@ -113,21 +114,21 @@ const resolvers = {
           const updatedUser = await User.findByIdAndUpdate(
             context.user._id,
             {
-              $addToSet: { 
+              $addToSet: {
                 savedVerses: {
                   verse,
-                  savedAt: new Date()
-                }
-              }
+                  savedAt: new Date(),
+                },
+              },
             },
             { new: true }
           );
           return updatedUser;
         } catch (err) {
-          throw new Error('Error saving verse');
+          throw new Error("Error saving verse");
         }
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
 
     removeVerse: async (parent, { verse }, context) => {
@@ -137,17 +138,17 @@ const resolvers = {
             context.user._id,
             {
               $pull: {
-                savedVerses: { verse }
-              }
+                savedVerses: { verse },
+              },
             },
             { new: true }
           );
           return updatedUser;
         } catch (err) {
-          throw new Error('Error removing verse');
+          throw new Error("Error removing verse");
         }
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
 
     createPrayerRequest: async (parent, { input }, context) => {
@@ -159,43 +160,48 @@ const resolvers = {
               $push: {
                 prayerRequests: {
                   ...input,
-                  status: 'Active',
+                  status: "Active",
                   createdAt: new Date(),
-                }
-              }
+                },
+              },
             },
-            { 
+            {
               new: true,
-              runValidators: true
+              runValidators: true,
             }
           );
           return updatedUser;
         } catch (err) {
-          console.error('Error creating prayer request:', err);
-          throw new Error('Failed to create prayer request');
+          console.error("Error creating prayer request:", err);
+          throw new Error("Failed to create prayer request");
         }
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
 
-    updatePrayerStatus: async (parent, { prayerRequestId, status }, context) => {
+    updatePrayerStatus: async (
+      parent,
+      { prayerRequestId, status },
+      context
+    ) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
-          { 
+          {
             _id: context.user._id,
-            "prayerRequests._id": prayerRequestId 
+            "prayerRequests._id": prayerRequestId,
           },
           {
             $set: {
               "prayerRequests.$.status": status,
-              "prayerRequests.$.answeredAt": status === 'Answered' ? new Date() : null
-            }
+              "prayerRequests.$.answeredAt":
+                status === "Answered" ? new Date() : null,
+            },
           },
           { new: true }
         );
         return updatedUser;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
 
     deletePrayerRequest: async (parent, { prayerRequestId }, context) => {
@@ -204,14 +210,14 @@ const resolvers = {
           context.user._id,
           {
             $pull: {
-              prayerRequests: { _id: prayerRequestId }
-            }
+              prayerRequests: { _id: prayerRequestId },
+            },
           },
           { new: true }
         );
         return updatedUser;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
   },
 };

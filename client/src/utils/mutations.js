@@ -25,7 +25,11 @@ export const ADD_USER = gql`
 `;
 
 export const LOGIN_WITH_GOOGLE = gql`
-  mutation loginWithGoogle($email: String!, $name: String!, $googleId: String!) {
+  mutation loginWithGoogle(
+    $email: String!
+    $name: String!
+    $googleId: String!
+  ) {
     loginWithGoogle(email: $email, name: $name, googleId: $googleId) {
       token
       user {
@@ -116,4 +120,3 @@ export const DELETE_PRAYER_REQUEST = gql`
     }
   }
 `;
-

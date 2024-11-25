@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import "../styles/AskAI.css";
+import { generateBibleResponse } from '../utils/openai';
 
 const AskAI = () => {
   const [question, setQuestion] = useState('');
@@ -12,7 +13,6 @@ const AskAI = () => {
     e.preventDefault();
     if (!question.trim()) return;
 
-
     const newMessage = {
       type: 'user',
       content: question,
@@ -20,18 +20,28 @@ const AskAI = () => {
     };
 
     setMessages(prev => [...prev, newMessage]);
-
-    // Simulate AI response (replace with actual OpenAI integration later)
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      const response = await generateBibleResponse(question);
+      
       const aiResponse = {
         type: 'ai',
-        content: "I apologize, but the AI response feature is currently in development. Once integrated with OpenAI, I'll be able to provide biblical insights and answer your questions about scripture.",
+        content: response,
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, aiResponse]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      const errorResponse = {
+        type: 'ai',
+        content: "I apologize, but I encountered an error. Please try again.",
+        timestamp: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
 
     setQuestion('');
   };

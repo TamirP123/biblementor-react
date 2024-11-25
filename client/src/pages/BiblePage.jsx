@@ -15,6 +15,7 @@ import {
   Button,
 } from "@mui/material";
 import "../styles/Bible.css";
+import { generateBibleResponse } from '../utils/openai';
 
 const API_KEY = "9a8c2b0a20ea36de9f5cb33e71844243";
 const BIBLE_VERSIONS = [
@@ -171,21 +172,19 @@ const Bible = () => {
         .map(verse => `${verse.reference}: ${verse.content.replace(/(<([^>]+)>)/gi, "")}`)
         .join("\n");
 
-      // Simulate AI response for now
-      setTimeout(() => {
-        setAiResponse(
-          "This is a placeholder AI response. Once integrated with OpenAI, this will provide detailed analysis of the selected verses, including historical context, interpretation, and application."
-        );
-        setIsAnalyzing(false);
-      }, 1500);
+      const prompt = `Please analyze these Bible verses and provide insight about their meaning, context, and application:
 
-      // Once OpenAI is integrated, replace with actual API call:
-      /*
-      const response = await generateBibleResponse(
-        `Please analyze these Bible verses and provide insight:\n${versesText}`
-      );
+Verses to analyze:
+${versesText}
+
+Please structure your response with:
+1. Historical Context
+2. Main Message
+3. Modern Application
+4. Cross References (if any)`;
+
+      const response = await generateBibleResponse(prompt);
       setAiResponse(response);
-      */
     } catch (error) {
       console.error("Error analyzing verses:", error);
       setAiResponse("Sorry, there was an error analyzing the verses. Please try again.");

@@ -20,6 +20,7 @@ import AskAI from "./pages/AskAI.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import VersesPage from "./pages/VersesPage.jsx";
 import PrayerRequestsPage from "./pages/PrayerRequestsPage.jsx";
+import LearningMap from "./pages/LearningMap.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: 'prayer-requests/',
         element: <PrayerRequestsPage />,
+      },
+      {
+        path: 'learning-map/',
+        element: <LearningMap />,
       },
     ],
   },

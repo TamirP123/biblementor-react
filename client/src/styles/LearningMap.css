@@ -1,0 +1,80 @@
+.learning-map-page {
+  min-height: 100vh;
+  padding-top: 64px; /* Account for navbar height */
+  background-color: #f8f9fa;
+}
+
+.learning-map-header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+}
+
+.learning-map-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.learning-map-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.learning-map-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.learning-map-content .bible-map-container {
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.learning-map-content .map-wrapper {
+  height: 70vh;
+}
+
+.map-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.feature-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  color: #00c6ff;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .learning-map-header h1 {
+    font-size: 2rem;
+  }
+  
+  .learning-map-content {
+    padding: 1rem;
+  }
+  
+  .learning-map-content .map-wrapper {
+    height: 50vh;
+  }
+} 
