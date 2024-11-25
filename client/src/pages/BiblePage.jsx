@@ -22,7 +22,7 @@ const BIBLE_VERSIONS = [
   { id: "9879dbb7cfe39e4d-01", name: "KJV" },
   { id: "06125adad2d5898a-01", name: "ASV" },
   { id: "de4e12af7f28f599-01", name: "ESV" },
-  { id: "1c9761e0230da6e0-01", name: "NIV" },
+  // { id: "1c9761e0230da6e0-01", name: "NIV" },
   { id: "c315fa9f71d4af3a-01", name: "NKJV" },
   { id: "7142879509583d59-01", name: "NLT" },
 ];

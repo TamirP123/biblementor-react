@@ -10,7 +10,7 @@ const Features = () => {
           <div className="feature-card">
             <i className="feature-icon bible-study"></i>
             <h3>Bible Study Guidance</h3>
-            <p>Get personalized study plans and verse explanations</p>
+            <p>Get personalized verse explanations by exploring the Bible with AI</p>
           </div>
           <div className="feature-card">
             <i className="feature-icon question"></i>

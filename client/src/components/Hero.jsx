@@ -229,7 +229,7 @@ const Hero = () => {
             Your intelligent companion for deeper biblical understanding and spiritual growth
           </p>
           <div className="cta-container">
-            <Link to="/bible">
+            <Link to="/ask-ai">
             <button className="cta-button primary">
               Start Exploring
             </button>
