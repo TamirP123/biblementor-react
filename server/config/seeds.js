@@ -2,12 +2,14 @@ const db = require("../config/connection");
 const { User } = require("../models");
 
 db.once("open", async () => {
+  await User.deleteMany({});
 
+  await User.create({
+    name: "user",
+    email: "user@gmail.com",
+    password: "password"
+  });
 
-  console.log("Admin user seeded");
-
-  
-  console.log("Sneakers seeded");
-
+  console.log("User seeded!");
   process.exit();
 });
