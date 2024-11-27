@@ -64,7 +64,6 @@
   font-size: 1.1rem;
 }
 
-/* Feature icons specific styles */
 .bible-study::before {
   content: "📖";
 }

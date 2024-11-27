@@ -15,7 +15,7 @@ import {
   Button,
 } from "@mui/material";
 import "../styles/Bible.css";
-import { generateBibleResponse } from '../utils/openai';
+import { generateBibleResponse } from "../utils/openai";
 
 const API_KEY = "9a8c2b0a20ea36de9f5cb33e71844243";
 const BIBLE_VERSIONS = [
@@ -155,8 +155,8 @@ const Bible = () => {
   );
 
   const handleVerseClick = (verse) => {
-    if (selectedVerses.find(v => v.id === verse.id)) {
-      setSelectedVerses(selectedVerses.filter(v => v.id !== verse.id));
+    if (selectedVerses.find((v) => v.id === verse.id)) {
+      setSelectedVerses(selectedVerses.filter((v) => v.id !== verse.id));
     } else {
       setSelectedVerses([...selectedVerses, verse]);
     }
@@ -165,11 +165,14 @@ const Bible = () => {
   const handleAnalyzeVerses = async () => {
     setAiDialogOpen(true);
     setIsAnalyzing(true);
-    
+
     try {
       // Format verses for the prompt
       const versesText = selectedVerses
-        .map(verse => `${verse.reference}: ${verse.content.replace(/(<([^>]+)>)/gi, "")}`)
+        .map(
+          (verse) =>
+            `${verse.reference}: ${verse.content.replace(/(<([^>]+)>)/gi, "")}`
+        )
         .join("\n");
 
       const prompt = `Please analyze these Bible verses and provide insight about their meaning, context, and application:
@@ -187,7 +190,9 @@ Please structure your response with:
       setAiResponse(response);
     } catch (error) {
       console.error("Error analyzing verses:", error);
-      setAiResponse("Sorry, there was an error analyzing the verses. Please try again.");
+      setAiResponse(
+        "Sorry, there was an error analyzing the verses. Please try again."
+      );
     } finally {
       setIsAnalyzing(false);
     }
@@ -284,7 +289,8 @@ Please structure your response with:
                     onClick={handleAnalyzeVerses}
                     className="analyze-button"
                   >
-                    Analyze {selectedVerses.length} Selected Verse{selectedVerses.length > 1 ? 's' : ''}
+                    Analyze {selectedVerses.length} Selected Verse
+                    {selectedVerses.length > 1 ? "s" : ""}
                   </Button>
                   <Button
                     variant="outlined"
@@ -298,10 +304,14 @@ Please structure your response with:
 
               <div className="verses-content">
                 {verses.map((verse) => (
-                  <span 
-                    key={verse.id} 
-                    id={verse.id} 
-                    className={`verse-wrapper ${selectedVerses.find(v => v.id === verse.id) ? 'selected' : ''}`}
+                  <span
+                    key={verse.id}
+                    id={verse.id}
+                    className={`verse-wrapper ${
+                      selectedVerses.find((v) => v.id === verse.id)
+                        ? "selected"
+                        : ""
+                    }`}
                     onClick={() => handleVerseClick(verse)}
                   >
                     <span className="verse-number">

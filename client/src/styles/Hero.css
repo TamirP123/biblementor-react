@@ -229,7 +229,6 @@ h1 {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .hero-content {
     flex-direction: column;
@@ -259,58 +258,103 @@ h1 {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - 120px);
-    padding: 40px 20px;
+    min-height: auto;
+    padding: 20px 16px;
+    margin-top: 80px;
+  }
+
+  .hero-content {
+    padding: 0 10px;
+    gap: 30px;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
   }
 
   .verse-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
   }
 
   .cta-container {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
   .cta-button {
-    width: 100%;
-    margin: 0;
-  }
-
-  .cta-button.secondary {
-    margin-left: 0;
+    padding: 12px 25px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    min-height: calc(100vh - 160px);
-    margin-top: 70px;
-    padding: 40px 20px;
+    min-height: auto;
+    margin-top: 60px;
+    padding: 16px 12px;
+  }
+
+  .hero-content {
+    padding: 0 8px;
+    gap: 24px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    padding: 0 8px;
   }
 
   .verse-card {
-    padding: 20px;
+    padding: 16px;
+    margin: 0 8px;
+  }
+
+  .verse-header {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
   }
 
   .verse-footer {
     flex-direction: column;
+    gap: 10px;
   }
 
-  .verse-share-btn, .verse-save-btn {
+  .verse-share-btn, 
+  .verse-save-btn {
+    padding: 10px 16px;
+    font-size: 0.95rem;
     width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  .demo-content {
+    padding: 12px 0;
+  }
+
+  .demo-verse {
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 0.95rem;
+  }
+
+  .demo-response {
+    font-size: 0.95rem;
+    margin: 12px 0;
   }
 }
 
@@ -352,7 +396,7 @@ h1 {
 }
 
 .tooltip-wrapper {
-  display: inline-block; /* Needed for tooltip to work with disabled button */
+  display: inline-block; 
 }
 
 .verse-save-btn.disabled {
@@ -391,12 +435,10 @@ h1 {
   background: rgba(0, 198, 255, 0.2);
 }
 
-/* Add hover effects for share menu items */
 .MuiMenuItem-root:hover {
   background-color: rgba(0, 198, 255, 0.1) !important;
 }
 
-/* Style for copy success state */
 .copy-success {
   color: #00c6ff;
 }

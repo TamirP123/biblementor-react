@@ -123,9 +123,16 @@ const PrayerRequestsPage = () => {
           <Grid item xs={12} md={6} lg={4} key={prayer._id}>
             <Card className={`prayer-card ${prayer.status.toLowerCase()}`}>
               <CardContent>
-                <Typography variant="h6" className="prayer-title">
-                  {prayer.title}
-                </Typography>
+                <Box className="prayer-status-wrapper">
+                  <Typography variant="h6" className="prayer-title">
+                    {prayer.title}
+                  </Typography>
+                  <Typography 
+                    className={`prayer-status ${prayer.status.toLowerCase()}`}
+                  >
+                    {prayer.status === 'Answered' ? 'Answered' : 'Unanswered'}
+                  </Typography>
+                </Box>
                 <Chip
                   label={prayer.category}
                   className={`category-chip ${prayer.category.toLowerCase()}`}
@@ -137,10 +144,12 @@ const PrayerRequestsPage = () => {
                   <Box>
                     <Button
                       size="small"
-                      onClick={() => handleStatusUpdate(prayer._id, 'Answered')}
-                      className={prayer.status === 'Answered' ? 'active' : ''}
+                      onClick={() => handleStatusUpdate(prayer._id, 
+                        prayer.status === 'Answered' ? 'Unanswered' : 'Answered')}
+                      className={`status-button ${prayer.status.toLowerCase()}`}
+                      startIcon={prayer.status === 'Answered' ? <CheckIcon /> : null}
                     >
-                      <CheckIcon /> Answered
+                      {prayer.status === 'Answered' ? 'Answered' : 'Mark as Answered'}
                     </Button>
                     <IconButton
                       size="small"

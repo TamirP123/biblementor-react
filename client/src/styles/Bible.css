@@ -102,7 +102,6 @@
   animation: slideUp 0.8s ease-out 0.4s backwards;
 }
 
-/* Default content styles */
 .default-content {
   text-align: center;
   padding: 60px 20px;
@@ -171,7 +170,6 @@
   color: #333333;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .bible-container {
     padding: 20px 10px;
@@ -220,12 +218,10 @@
   }
 }
 
-/* Add hover effect for better interactivity */
 .verse-item:hover .verse-number {
   color: #00c6ff;
 }
 
-/* Add loading state for version changes */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -415,18 +411,25 @@
   }
 }
 
-/* Add staggered animations for verses */
 .verse-wrapper:nth-child(1) { animation-delay: 0.2s; }
 .verse-wrapper:nth-child(2) { animation-delay: 0.3s; }
 .verse-wrapper:nth-child(3) { animation-delay: 0.4s; }
 .verse-wrapper:nth-child(4) { animation-delay: 0.5s; }
 .verse-wrapper:nth-child(5) { animation-delay: 0.6s; }
-/* Continue for more verses if needed */
 
-/* Add a preference media query for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Style for the verse numbers from the API */
+span.v {
+  font-size: 0.7em;
+  vertical-align: super;
+  color: #666666;
+  font-weight: 500;
+  margin-right: 1px;
+  padding-left: 2px;
 } 

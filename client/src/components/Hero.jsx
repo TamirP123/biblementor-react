@@ -45,16 +45,23 @@ const Hero = () => {
     const lastUpdated = localStorage.getItem("verseLastUpdated");
     const verse = localStorage.getItem("verseOfTheDay");
 
-    if (!lastUpdated || now - new Date(lastUpdated) > 24 * 60 * 60 * 1000) {
-      const randomIndex = Math.floor(Math.random() * verses.length);
-      const newVerse = verses[randomIndex];
+    if (!lastUpdated || !verse || now - new Date(lastUpdated) > 24 * 60 * 60 * 1000) {
+      const savedVerses = userData?.me?.savedVerses?.map(sv => sv.verse) || [];
+      
+      const availableVerses = verses.filter(v => !savedVerses.includes(v));
+      
+      const versesToChooseFrom = availableVerses.length > 0 ? availableVerses : verses;
+      
+      const randomIndex = Math.floor(Math.random() * versesToChooseFrom.length);
+      const newVerse = versesToChooseFrom[randomIndex];
+      
       localStorage.setItem("verseOfTheDay", newVerse);
       localStorage.setItem("verseLastUpdated", now.toISOString());
       setVerseOfTheDay(newVerse);
     } else {
       setVerseOfTheDay(verse);
     }
-  }, []);
+  }, [userData]);
 
   const handleShareClick = (event) => {
     setShareAnchorEl(event.currentTarget);
@@ -126,30 +133,35 @@ const Hero = () => {
 
     try {
       if (isVerseSaved) {
-        await removeVerse({
-          variables: { verse: verseOfTheDay },
-          update: (cache) => {
-            try {
-              const existingData = cache.readQuery({ query: GET_ME });
-              if (existingData && existingData.me) {
-                cache.writeQuery({
-                  query: GET_ME,
-                  data: {
-                    me: {
-                      ...existingData.me,
-                      _id: existingData.me._id,
-                      username: existingData.me.username,
-                      email: existingData.me.email,
-                      savedVerses: existingData.me.savedVerses.filter(v => v.verse !== verseOfTheDay)
+        const savedVerseToRemove = userData.me.savedVerses.find(
+          sv => sv.verse === verseOfTheDay
+        );
+        
+        if (savedVerseToRemove) {
+          await removeVerse({
+            variables: { verse: savedVerseToRemove.verse },
+            update: (cache) => {
+              try {
+                const existingData = cache.readQuery({ query: GET_ME });
+                if (existingData && existingData.me) {
+                  cache.writeQuery({
+                    query: GET_ME,
+                    data: {
+                      me: {
+                        ...existingData.me,
+                        savedVerses: existingData.me.savedVerses.filter(
+                          v => v.verse !== savedVerseToRemove.verse
+                        )
+                      }
                     }
-                  }
-                });
+                  });
+                }
+              } catch (err) {
+                console.log('Cache update error:', err);
               }
-            } catch (err) {
-              console.log('Cache update error:', err);
             }
-          }
-        });
+          });
+        }
         setNotification({
           open: true,
           message: 'Verse removed successfully!',
@@ -158,7 +170,10 @@ const Hero = () => {
       } else {
         const currentDate = new Date().toISOString();
         await saveVerse({
-          variables: { verse: verseOfTheDay },
+          variables: { 
+            verse: verseOfTheDay,
+            savedAt: currentDate 
+          },
           update: (cache, { data: { saveVerse } }) => {
             try {
               const existingData = cache.readQuery({ query: GET_ME });
@@ -173,11 +188,8 @@ const Hero = () => {
                   query: GET_ME,
                   data: {
                     me: {
-                      _id: existingData.me._id,
-                      username: existingData.me.username,
-                      email: existingData.me.email,
-                      savedVerses: [...existingData.me.savedVerses, newSavedVerse],
-                      __typename: 'User'
+                      ...existingData.me,
+                      savedVerses: [...existingData.me.savedVerses, newSavedVerse]
                     }
                   }
                 });
@@ -339,7 +351,7 @@ const Hero = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Add Snackbar for notifications */}
+      {/* Notifications */}
       <Snackbar 
         open={notification.open} 
         autoHideDuration={3000} 
