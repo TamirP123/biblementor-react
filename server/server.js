@@ -15,6 +15,11 @@ const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 const mongoose = require('mongoose');
 
+// Add this near the top of your file, after the imports
+const GOOGLE_CALLBACK_URL = process.env.NODE_ENV === 'production'
+  ? `https://${process.env.HEROKU_APP_NAME}.herokuapp.com/api/auth/google/callback`
+  : 'http://localhost:3001/api/auth/google/callback';
+
 // mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/biblementor')
 //   .then(() => console.log('Connected to MongoDB'))
 //   .catch(err => console.error('MongoDB connection error:', err));
