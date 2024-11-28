@@ -33,18 +33,16 @@ GIVEN I am a user seeking biblical guidance
 * [![Apollo][ApolloGraphQL]][Apollo-url] - GraphQL implementation
 * [![MUI][MUI.com]][Mui-url] - UI component library
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url] - Additional styling framework
+* [![OpenAI][OpenAI]][OpenAI-url] - AI integration for generating insights and analysis
+* [![API.Bible][API.Bible]][API.Bible-url] - API for accessing biblical texts and data
 
 ## Live Application
 
-Experience Bible Mentor AI live at: [Bible Mentor AI](https://harmonia-oasis-ceca56dc2dde.herokuapp.com/)
+Experience Bible Mentor AI live at: [Bible Mentor AI](https://bible-mentor-ai-0655b8172ba3.herokuapp.com/)
 
 ## Repository
 
-View the source code: [GitHub Repository](https://github.com/TamirP123/resort-booking-site)
-
-## Application Preview
-
-![Bible Mentor AI Interface](link)
+View the source code: [GitHub Repository](https://github.com/TamirP123/biblementor-react)
 
 ## Future Enhancements
 
@@ -55,9 +53,9 @@ View the source code: [GitHub Repository](https://github.com/TamirP123/resort-bo
 
 ## Contact
 
-Your Name - [Your LinkedIn](Your LinkedIn URL)
+Tamir Phillips - [LinkedIn](https://www.linkedin.com/in/tamir-phillips-6096922ba)
 
-Project Link: [https://github.com/TamirP123/resort-booking-site](https://github.com/TamirP123/resort-booking-site)
+Project Link: [https://bible-mentor-ai-0655b8172ba3.herokuapp.com/](https://bible-mentor-ai-0655b8172ba3.herokuapp.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
