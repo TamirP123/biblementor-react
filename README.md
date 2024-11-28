@@ -73,4 +73,8 @@ Project Link: [https://bible-mentor-ai-0655b8172ba3.herokuapp.com/](https://bibl
 [Node-url]: https://nodejs.org/en
 [ApolloGraphQL]: https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql
 [Apollo-url]: https://www.apollographql.com/
+[OpenAI]: https://img.shields.io/badge/OpenAI-41295E?style=for-the-badge&logo=openai&logoColor=white
+[OpenAI-url]: https://openai.com/
+[API.Bible]: https://img.shields.io/badge/API.Bible-000000?style=for-the-badge&logo=API.Bible&logoColor=white
+[API.Bible-url]: https://api.bible.com/
 
