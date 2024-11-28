@@ -49,7 +49,7 @@ function SignupPage() {
         </div>
         <div className="auth-form-container">
           <h2>Create an Account</h2>
-          <p className="auth-subtitle">Join us and start your sneaker journey.</p>
+          <p className="auth-subtitle">Create an account to start your journey with Bible Mentor.</p>
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
               <input

@@ -19,9 +19,8 @@ const SearchDropdown = () => {
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     if (searchQuery.trim()) {
-      // Force navigation even if on same route
       navigate('/', { replace: true });
       navigate(`/search/${encodeURIComponent(searchQuery.trim())}`);
     }
@@ -36,7 +35,13 @@ const SearchDropdown = () => {
           onChange={handleSearchChange}
           className="search-input"
         />
-        <FaSearch className="search-icon" onClick={handleSearchSubmit} />
+        <button 
+          type="button" 
+          onClick={handleSearchSubmit}
+          className="search-icon-button"
+        >
+          <FaSearch className="search-icon" />
+        </button>
       </form>
     </Box>
   );

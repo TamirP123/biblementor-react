@@ -18,7 +18,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
-// Import React Icons
 import { FaUserCircle } from "react-icons/fa";
 
 const NavbarComponent = () => {
